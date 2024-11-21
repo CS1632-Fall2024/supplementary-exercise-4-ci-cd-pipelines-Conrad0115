@@ -1,6 +1,7 @@
 package edu.pitt.cs;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
@@ -8,6 +9,8 @@ import org.junit.runners.MethodSorters;
 import static org.junit.Assert.*;
 
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.InstanceOf;
+
 import static org.mockito.Mockito.*;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -32,6 +35,8 @@ public class CatUnitTest {
 		// Passing InstanceType.MOCK as the first parameter will create a mock cat using Mockito.
 		// Which type is the correct choice for this unit test?  I'll leave it up to you.  The answer is in the Unit Testing Part 2 lecture. :)
 		// TODO: Fill in
+
+		c = Cat.createInstance(InstanceType.IMPL, 1, "Jennyanydots");
 	}
 
 	@After
@@ -53,6 +58,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetId() {
 		// TODO: Fill in
+		int ret = c.getId();
+		assertEquals(ret,1);
 	}
 
 	/**
@@ -67,6 +74,8 @@ public class CatUnitTest {
 	@Test
 	public void testGetName() {
 		// TODO: Fill in
+		String ret = c.getName();
+		assertEquals(ret, "Jennyanydots");
 	}
 
 	/**
@@ -80,7 +89,8 @@ public class CatUnitTest {
 	 */
 	@Test
 	public void testGetRented() {
-		// TODO: Fill in
+		boolean ret = c.getRented();
+		assertFalse(ret);
 	}
 
 	/**
@@ -95,6 +105,8 @@ public class CatUnitTest {
 	@Test
 	public void testToString() {
 		// TODO: Fill in
+		String ret = c.toString();
+		assertEquals(ret,"ID 1. Jennyanydots");
 	}
 
 	/**
@@ -110,6 +122,9 @@ public class CatUnitTest {
 	@Test
 	public void testRentCat() {
 		// TODO: Fill in
+		c.rentCat();
+		boolean ret = c.getRented();
+		assertTrue(ret);
 	}
 
 	/**
@@ -126,6 +141,10 @@ public class CatUnitTest {
 	@Test
 	public void testReturnCat() {
 		// TODO: Fill in
+		c.rentCat();
+		c.returnCat();
+		boolean ret = c.getRented();
+		assertFalse(ret);
 	}
 
 	/**
@@ -141,6 +160,12 @@ public class CatUnitTest {
 	@Test
 	public void testRenameCat() {
 		// TODO: Fill in
+		c.renameCat("Garfield");
+		String nameRet = c.getName();
+		assertEquals("Garfield",nameRet );
+		String toStr = c.toString();
+		assertEquals("ID 1. Garfield",toStr );
 	}
+
 
 }

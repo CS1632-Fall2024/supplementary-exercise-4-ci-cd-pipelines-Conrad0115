@@ -14,12 +14,14 @@ public interface RentACat {
 				return new RentACatSolution();
 			case MOCK:
 				// TODO: Return a mock object that emulates the behavior of a real object.
-				return null;
+				return Mockito.mock(RentACatImpl.class);
 			default:
 				assert (false);
 				return null;
 		}
 	}
+
+    Object getClass = null;
 
 	// WARNING: You are not allowed to change any part of the interface.
 	// That means you cannot add any method nor modify any of these methods.
